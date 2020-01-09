@@ -1,3 +1,0 @@
-/Users/sammyrobens-paradise/CLionProjects/SYDE-223-Practice-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/sammyrobens-paradise/CLionProjects/SYDE-223-Practice-1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/sammyrobens-paradise/CLionProjects/SYDE-223-Practice-1/cmake-build-debug/CMakeFiles/SYDE_223_Practice_1.dir
