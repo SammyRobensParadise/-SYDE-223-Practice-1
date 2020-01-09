@@ -25,6 +25,27 @@ public:
     friend bool operator==(const Music &comp1, const Music &comp2);
 };
 
+class Song {
+private:
+    unsigned int songLength;
+    string genre;
+    string songName;
+
+public:
+    Song(int songLength = 0);
+
+    Song(int songLength, string genre, string songName);
+
+// static_cast<Music>(song_info);
+};
+
+class Playlist {
+
+    Playlist shuffle_songs() {
+
+    };
+};
+
 bool operator==(const Music &comp1, const Music &comp2) {
     return comp1.dateMade == comp2.dateMade &&
            comp1.artistName == comp2.artistName
