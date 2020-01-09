@@ -12,8 +12,11 @@ private:
    string artistName;
    string musicID;
 public:
-    Music();
+    Music(int dateMade = 0);
     Music(int dateMade,string artistName,string musicID);
+    string get_artist(){
+        return artistName;
+    }
 };
 
 int main() {
