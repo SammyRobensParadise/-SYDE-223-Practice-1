@@ -16,9 +16,6 @@
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
 
-#define ASSERT_TRUE(T) if (!(T)) returns false;
-#define ASSERT_FALSE(T) if ((T)) returns false;
-
 /** @namespace {std} */
 using namespace std;
 
@@ -141,7 +138,7 @@ public:
 
 // Song test class
 
-class SongTest {
+class SongTest : public Music {
     Song songInstanceComp1;
     Song songInstanceComp2;
     Song songInstanceComp3;
@@ -155,13 +152,26 @@ public:
         songInstanceComp3 = Song(124, "rock and roll", "brown sugar");
 
     }
-
+    /**
+     *
+     * @return true
+     */
     bool testSongComp(){
         ASSERT_TRUE(songInstanceComp1 == songInstanceComp2);
         ASSERT_FALSE(songInstanceComp2 == songInstanceComp3);
         return true;
     }
-    void tear_down(){
+    void tearDown(){
+    }
+
+    /**
+     * test runner for SongTest class
+     * @test Song
+     */
+    void runTest(){
+        setup();
+        cout<<(testSongComp()? "PASS: all assertions passed sucessfully \n": "FAIL: some assertions failed \n");
+        tearDown();
     }
 
 };
