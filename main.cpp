@@ -69,6 +69,34 @@ public:
     }
 };
 
+class MusicTest {
+    Music musicTester;
+public:
+    // initialize object values
+    void setup() {
+        musicTester1 = Music(8, "Queen", "Under Pressure");
+        musicTester2 = Music( 7, "ABBA", "Waterloo");
+    }
+
+    /**
+     *
+     * @return
+     */
+    bool test_get_artist() {
+        musicTester.get_artist();
+        ASSERT_TRUE(musicTester1.get_artist() == "Queen");
+        ASSERT_FALSE(musicTester1.get_artist() != "Queen");
+        return true;
+    }
+
+    bool testSongComp(){
+        ASSERT_TRUE(musicTester1 == musicTester2);
+        ASSERT_FALSE(musicTester1 == musicTester2);
+        return true;
+    }
+
+};
+
 class Song : public Music {
 private:
     unsigned int songLength;
@@ -159,6 +187,10 @@ public:
 
     };
 
+    /**
+     *
+     * @param init_my_playlist
+     */
     Playlist(vector<Song> init_my_playlist) {
         my_playlist = init_my_playlist;
     }
@@ -233,27 +265,3 @@ int main() {
     cout << lame;
     return 0;
 }
-
-// test functionality -- very unfinished
-// should be inside the classes
-
-class MusicTest {
-    Music musicTester;
-
-    // initialize object values
-    void setup() {
-        musicTester = Music(8, "Queen", "Under Pressure"); //example, could have been anything
-    }
-
-    /**
-     *
-     * @return
-     */
-    bool test_get_artist() {
-        musicTester.get_artist();
-        ASSERT_TRUE(musicTester.get_artist() == "Queen");
-        ASSERT_FALSE(musicTester.get_artist() != "Queen");
-        return true;
-    }
-
-};
