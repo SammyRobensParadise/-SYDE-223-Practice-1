@@ -70,7 +70,8 @@ public:
 };
 
 class MusicTest {
-    Music musicTester;
+    Music musicTester1;
+    Music musicTester2;
 public:
     // initialize object values
     void setup() {
@@ -83,7 +84,7 @@ public:
      * @return
      */
     bool test_get_artist() {
-        musicTester.get_artist();
+        musicTester1.get_artist();
         ASSERT_TRUE(musicTester1.get_artist() == "Queen");
         ASSERT_FALSE(musicTester1.get_artist() != "Queen");
         return true;
