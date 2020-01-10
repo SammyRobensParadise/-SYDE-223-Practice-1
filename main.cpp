@@ -85,7 +85,7 @@ public:
      *
      * @return
      */
-    bool test_get_artist() {
+    bool testGetArtist() {
         musicTester1.get_artist();
         ASSERT_TRUE(musicTester1.get_artist() == "Queen");
         ASSERT_FALSE(musicTester1.get_artist() != "Queen");
@@ -110,7 +110,10 @@ public:
     void runTest() {
         cout << "Testing Music class...\n";
         setup();
+        cout<< "testing MusicComp()\n";
         cout << (testMusicComp() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
+        cout<< "testing getArtist  \n";
+        cout << (testGetArtist() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
         tearDown();
         cout << "Done!\n";
     }
@@ -231,7 +234,7 @@ public:
      * @param {Song} songToInsert
      * @return bool
      */
-    bool insert_songs(const Song &songToInsert) {
+    bool insertSongs(const Song &songToInsert) {
         string artistName = static_cast<Music>(songToInsert).get_artist();
         int unique_artist_count = 0;
         for (vector<Song>::iterator it = my_playlist.begin(); it != my_playlist.end(); ++it) {
@@ -239,6 +242,7 @@ public:
                 unique_artist_count++;
             }
             if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS) {
+                cout<< "ERR: unable to add songs \n";
                 return false;
             }
         }
@@ -277,6 +281,7 @@ class PlaylistTest {
     Song testSong2;
     Song testSong3;
     Song testSong4;
+    Song testSong5;
     Playlist playlistInstance1;
     Playlist playlistInstance2;
 
@@ -286,12 +291,27 @@ public:
         testSong2 = Song(124, "rap", "fight this feeling");
         testSong3 = Song(145, "R&B", "Nights");
         testSong4 = Song(132, "Blues", "Blues No. 9");
+        testSong5 = Song(121, "Regge", "One Love");
         Song playlistTest[4] = {testSong1, testSong2, testSong3, testSong4};
         int size = 4;
         playlistInstance1 = Playlist(playlistTest, size);
     };
+
+    bool testInsertSongs() {
+        cout << 'testing insertSongs() \n';
+        cout << "Inserting normal Song... \n";
+        playlistInstance1.insertSongs(testSong5);
+        int playlistSize = playlistInstance1.get_songs().size();
+        ASSERT_TRUE(playlistInstance1.get_songs().at(playlistSize) == testSong5)
+        cout << "PASS: additional song added \n";
+        cout<< "Inserting duplicate songs... \n";
+        ASSERT_TRUE(playlistInstance1.insertSongs(testSong1) == false);
+        cout<< "PASS: songs were not added \n";
+        return true;
+    }
+
     bool testShuffleSongs() {
-        cout << "testing shuffle_songs() \n";
+        cout << "testing shuffleSongs() \n";
         cout << "creating vector... \n";
         vector<Song> initInstance = playlistInstance1.get_songs();
         cout << "shuffling songs... \n";
@@ -300,10 +320,12 @@ public:
         cout << "PASS: shuffling \n";
         return true;
     }
-    void tearDown(){
+
+    void tearDown() {
 
     }
-    void runTest(){
+
+    void runTest() {
         cout << "Testing Playlist Class... \n";
         setup();
         cout << (testShuffleSongs() ? "PASS: all assertions passed sucessfully \n" : "FAIL: some assertions failed \n");
