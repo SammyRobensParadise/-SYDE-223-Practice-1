@@ -9,7 +9,6 @@
 #include <string>
 #include <vector>
 #include <math.h>
-#include <algorithm>
 #include <random>
 #include <chrono>
 
@@ -259,16 +258,13 @@ public:
      * @return {class} playlistToBeShuffled
      */
     Playlist shuffleSongs() {
-        Playlist playlistToBeShuffled;
-        // get a time-based seed
-        unsigned seed = std::chrono::system_clock::now()
-                .time_since_epoch()
-                .count();
-        shuffle(playlistToBeShuffled.get_songs().begin(), playlistToBeShuffled.get_songs().end(),
-                std::default_random_engine(seed));
-        return playlistToBeShuffled;
+        for(int i = 1; i < my_playlist.size(); i++){
+            int index1 = rand() % my_playlist.size();
+            int index2 = rand() % my_playlist.size();
+            swap(my_playlist[index1], my_playlist[index2]);
+        }
+        return my_playlist;
     }
-
     friend vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2);
 };
 
