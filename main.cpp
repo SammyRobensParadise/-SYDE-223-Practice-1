@@ -78,7 +78,7 @@ public:
     // initialize object values
     void setup() {
         musicTester1 = Music(8, "Queen", "Under Pressure");
-        musicTester2 = Music(7, "ABBA", "Waterloo");
+        musicTester2 = Music(8, "Queen", "Under Pressure");
         musicTester3 = Music(6, "Nina Simone", "Feeling Good");
     }
 
@@ -106,6 +106,7 @@ public:
      * test runner for MusicTest class
      */
     void runTest(){
+        cout<<"Testing Music class...\n";
         setup();
         cout<<(testMusicComp()? "PASS: all assertions passed successfully \n": "FAIL: some assertions failed \n");
         tearDown();
@@ -301,7 +302,11 @@ vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
  * @return {int} 0
  */
 int main() {
+
     SongTest songTestRunner;
     songTestRunner.runTest();
+
+    MusicTest musicTestRunner;
+    musicTestRunner.runTest();
     return 0;
 }
