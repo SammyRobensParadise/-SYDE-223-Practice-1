@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
 
@@ -77,7 +78,7 @@ public:
     // initialize object values
     void setup() {
         musicTester1 = Music(8, "Queen", "Under Pressure");
-        musicTester2 = Music( 7, "ABBA", "Waterloo");
+        musicTester2 = Music(7, "ABBA", "Waterloo");
         musicTester3 = Music(6, "Nina Simone", "Feeling Good");
     }
 
@@ -110,6 +111,7 @@ public:
         tearDown();
     }
 };
+
 
 class Song : public Music {
 private:
@@ -162,29 +164,34 @@ public:
      */
     void setup() {
         songInstanceComp1 = Song(124, "rap", "fight this feeling");
-        songInstanceComp3 = Song(124, "rap", "fight this feeling");
+        songInstanceComp2 = Song(124, "rap", "fight this feeling");
         songInstanceComp3 = Song(124, "rock and roll", "brown sugar");
 
     }
+
     /**
      *
      * @return true
      */
-    bool testSongComp(){
-        ASSERT_TRUE(songInstanceComp1 == songInstanceComp2);
-        ASSERT_FALSE(songInstanceComp2 == songInstanceComp3);
+    bool testSongComp() {
+        cout<<"running \n";
+        ASSERT_TRUE(songInstanceComp1 == songInstanceComp2)
+        cout<< "first pass \n";
+        ASSERT_FALSE(songInstanceComp2 == songInstanceComp3)
+        cout << "second pass \n";
         return true;
     }
-    void tearDown(){
+
+    void tearDown() {
     }
 
     /**
      * test runner for SongTest class
      * @test Song
      */
-    void runTest(){
+    void runTest() {
         setup();
-        cout<<(testSongComp()? "PASS: all assertions passed sucessfully \n": "FAIL: some assertions failed \n");
+        cout << (testSongComp() ? "PASS: all assertions passed sucessfully \n" : "FAIL: some assertions failed \n");
         tearDown();
     }
 
@@ -243,7 +250,6 @@ public:
      * @return {class} playlistToBeShuffled
      */
     Playlist shuffleSongs() {
-        // TODO implement shuffle songs
         Playlist playlistToBeShuffled(my_playlist);
         // get a time-based seed
         unsigned seed = std::chrono::system_clock::now()
@@ -258,7 +264,7 @@ public:
 };
 
 /**
- *
+ * overload
  * @param {vector<Song>} playlist1
  * @param {vector<Song>} playlist2
  * @return {vector<Song>} concatList
@@ -275,8 +281,7 @@ vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
  * @return {int} 0
  */
 int main() {
-    Music example(120, "rock", "name");
-    const string lame = example.get_artist();
-    cout << lame;
+    SongTest songTestRunner;
+    songTestRunner.runTest();
     return 0;
 }
