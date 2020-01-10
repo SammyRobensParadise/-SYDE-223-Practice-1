@@ -1,7 +1,7 @@
 /**
  * @author Sammy Robens-Paradise
  * @author Mary McPhee
- * @date Friday Janurary 10, 2020
+ * @date Friday Jan. 10, 2020
  */
 
 #include <iostream>
@@ -11,6 +11,8 @@
 #include <vector>
 #include <math.h>
 #include <algorithm>
+#include <random>
+#include <chrono>
 
 /** @namespace {std} */
 using namespace std;
@@ -30,6 +32,7 @@ public:
      * @param {int} dateMade
      */
     Music(int dateMade = 0);
+
     /**
      *
      * @param {int} dateMade
@@ -37,6 +40,7 @@ public:
      * @param {string} musicID
      */
     Music(int dateMade, string artistName, string musicID);
+
     /**
      *
      * @return {string} artistName
@@ -44,6 +48,7 @@ public:
     string get_artist() {
         return artistName;
     }
+
     /**
      *
      * @param {Music} comp2
@@ -68,6 +73,7 @@ public:
      * @param {int} songLength
      */
     Song(int songLength = 0);
+
     /**
      *
      * @param {int} songLength
@@ -75,6 +81,7 @@ public:
      * @param {string} songName
      */
     Song(int songLength, string genre, string songName);
+
     /**
      *
      * @param {Song} comp2
@@ -95,7 +102,9 @@ public:
     /**
      * constructor
      */
-    Playlist();
+    Playlist(vector<Song> myPlaylist);
+
+
     /**
      * insert_songs
      * @param {Song} songToInsert
@@ -115,12 +124,43 @@ public:
         my_playlist.push_back(songToInsert);
         return true;
     };
-
-    Playlist shuffleSongs(){
-        // TODO implement shuffle songs
-
+    /**
+     *
+     * @return {vector} my_playlist
+     */
+    vector<Song> get_songs() {
+        return my_playlist;
     }
+    /**
+     *
+     * @return {class} playlistToBeShuffled
+     */
+    Playlist shuffleSongs() {
+        // TODO implement shuffle songs
+        Playlist playlistToBeShuffled(my_playlist);
+        // get a time-based seed
+        unsigned seed = std::chrono::system_clock::now()
+                .time_since_epoch()
+                .count();
+        shuffle(playlistToBeShuffled.get_songs().begin(), playlistToBeShuffled.get_songs().end(),
+                std::default_random_engine(seed));
+        return playlistToBeShuffled;
+    }
+    friend vector<Song> operator+(vector<Song> &playlist1,vector<Song> &playlist2);
 };
+
+/**
+ *
+ * @param {vector<Song>} playlist1
+ * @param {vector<Song>} playlist2
+ * @return {vector<Song>} concatList
+ */
+vector<Song> operator+(vector<Song> &playlist1,vector<Song> &playlist2){
+    vector<Song> concatList = playlist1;
+    concatList.insert(concatList.end(), playlist2.begin(), playlist2.end());
+    return concatList;
+}
+
 
 /**a
  * @name main
