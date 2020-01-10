@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include <iostream>
 #include <vector>
 #include <math.h>
 #include <algorithm>
@@ -93,9 +92,12 @@ public:
         return true;
     }
 
-    bool testMusicComp() {
+    bool testMusicComp(){
+        cout<<"running... \n";
         ASSERT_TRUE(musicTester1 == musicTester2);
+        cout<<"Passed: Comparison of equal objects\n";
         ASSERT_FALSE(musicTester2 == musicTester3);
+        cout<<"Passed: Comparison of unequal objects\n";
         return true;
     }
 
@@ -110,6 +112,7 @@ public:
         setup();
         cout << (testMusicComp() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
         tearDown();
+        cout<<"Done!\n";
     }
 };
 
