@@ -92,12 +92,12 @@ public:
         return true;
     }
 
-    bool testMusicComp(){
-        cout<<"running... \n";
+    bool testMusicComp() {
+        cout << "running... \n";
         ASSERT_TRUE(musicTester1 == musicTester2);
-        cout<<"Passed: Comparison of equal objects\n";
+        cout << "Passed: Comparison of equal objects\n";
         ASSERT_FALSE(musicTester2 == musicTester3);
-        cout<<"Passed: Comparison of unequal objects\n";
+        cout << "Passed: Comparison of unequal objects\n";
         return true;
     }
 
@@ -112,7 +112,7 @@ public:
         setup();
         cout << (testMusicComp() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
         tearDown();
-        cout<<"Done!\n";
+        cout << "Done!\n";
     }
 };
 
@@ -219,8 +219,8 @@ public:
      *
      * @param init_my_playlist
      */
-    Playlist(Song init_my_playlist[],int &size) {
-        for (int i = 0; i < size-1; i++) {
+    Playlist(Song init_my_playlist[], int &size) {
+        for (int i = 0; i < size - 1; i++) {
             my_playlist.push_back(init_my_playlist[i]);
         }
     }
@@ -286,12 +286,29 @@ public:
         testSong2 = Song(124, "rap", "fight this feeling");
         testSong3 = Song(145, "R&B", "Nights");
         testSong4 = Song(132, "Blues", "Blues No. 9");
-        Song playlistTest[4] = {testSong1,testSong2,testSong3,testSong4};
+        Song playlistTest[4] = {testSong1, testSong2, testSong3, testSong4};
         int size = 4;
-        playlistInstance1 = Playlist(playlistTest,size);
+        playlistInstance1 = Playlist(playlistTest, size);
     };
-    bool testShuffleSongs(){
+    bool testShuffleSongs() {
+        cout << "testing shuffle_songs() \n";
+        cout << "creating vector... \n";
+        vector<Song> initInstance = playlistInstance1.get_songs();
+        cout << "shuffling songs... \n";
+        playlistInstance1.shuffleSongs();
+        ASSERT_TRUE(initInstance != playlistInstance1.get_songs())
+        cout << "PASS: shuffling \n";
+        return true;
+    }
+    void tearDown(){
 
+    }
+    void runTest(){
+        cout << "Testing Playlist Class... \n";
+        setup();
+        cout << (testShuffleSongs() ? "PASS: all assertions passed sucessfully \n" : "FAIL: some assertions failed \n");
+        tearDown();
+        cout << "Done! \n" << endl;
     }
 };
 
@@ -319,5 +336,8 @@ int main() {
 
     MusicTest musicTestRunner;
     musicTestRunner.runTest();
+
+    PlaylistTest playlistTestRunner;
+    playlistTestRunner.runTest();
     return 0;
 }
