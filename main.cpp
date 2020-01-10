@@ -4,8 +4,10 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <algorithm>
 
 using namespace std;
+const int MAX_NUMBER_OF_UNIQUE_ARTISTS = 3;
 
 class Music {
 
@@ -45,7 +47,6 @@ public:
                genre == comp2.genre &&
                songName == comp2.songName;
     }
-// static_cast<Music>(song_info);
 };
 
 
@@ -53,18 +54,24 @@ class Playlist {
 private:
     vector<Song> my_playlist;
 public:
-    bool Playlist_shuffle_songs(const Song &songToInsert) {
+    Playlist()
+    bool insert_songs(const Song &songToInsert) {
+        string artistName = static_cast<Music>(songToInsert).get_artist();
+        int unique_artist_count = 0;
         for (vector<Song>::iterator it = my_playlist.begin(); it != my_playlist.end(); ++it) {
-            if (*it == songToInsert) {
+            if (artistName == static_cast<Music>(*it).get_artist()) {
+                unique_artist_count++;
+            }
+            if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS) {
                 return false;
-            };
-
-        };
+            }
+        }
+        my_playlist.push_back(songToInsert);
         return true;
     };
 
-    bool insert_song() {}
-
+    Playlist shuffleSongs(){
+    }
 };
 
 
