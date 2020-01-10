@@ -14,6 +14,9 @@
 #include <random>
 #include <chrono>
 
+#define ASSERT_TRUE(T) if (!(T)) returns false;
+#define ASSERT_FALSE(T) if ((T)) returns false;
+
 /** @namespace {std} */
 using namespace std;
 
@@ -32,7 +35,7 @@ public:
      * @param {int} dateMade
      */
     Music() {
-         dateMade = 0;
+        dateMade = 0;
     };
 
     /**
@@ -106,6 +109,29 @@ public:
     }
 };
 
+// Song test class
+
+class SongTest {
+    Song songInstanceComp1;
+    Song songInstanceComp2;
+    Song songInstanceComp3;
+public:
+    void setup() {
+        songInstanceComp1 = Song(124, "rap", "fight this feeling");
+        songInstanceComp3 = Song(124, "rap", "fight this feeling");
+        songInstanceComp3 = Song(124, "rock and roll", "brown sugar");
+
+    }
+
+    bool testSongComp(){
+        ASSERT_TRUE(songInstanceComp1 == songInstanceComp2);
+        ASSERT_FALSE(songInstanceComp2 == songInstanceComp3);
+        return true;
+    }
+    void tear_down(){
+    }
+
+};
 
 class Playlist {
 private:
@@ -114,10 +140,11 @@ public:
     /**
      * constructor
      */
-    Playlist(){
+    Playlist() {
 
     };
-    Playlist(vector<Song> init_my_playlist){
+
+    Playlist(vector<Song> init_my_playlist) {
         my_playlist = init_my_playlist;
     }
 
@@ -182,7 +209,7 @@ vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
 }
 
 
-/**a
+/**
  * @name main
  * @return {int} 0
  */
@@ -196,8 +223,7 @@ int main() {
 // test functionality -- very unfinished
 // should be inside the classes
 
-#define ASSERT_TRUE(T) if (!(T)) returns false;
-#define ASSERT_TRUE(T) if (!(T)) returns false;
+
 
 
 // initialize object values
@@ -205,13 +231,13 @@ void setup() {
     musicTester = Music(8, "Queen", "Under Pressure")
 }
 
-bool test_get_artist(){
+bool test_get_artist() {
     musicTester.get_artist(musicTester);
     ASSRT_TRUE(musicTester.get_artist(musicTester) == "Queen");
-    ASSERT_FALSE(musicTester.get_artist(musicTester) !== "Queen");
+    ASSERT_FALSE(musicTester.get_artist(musicTester) != "Queen");
 }
 
-bool test_insert_songs(){
+bool test_insert_songs() {
     insert_songs("Bohemian Rhapsody");
     // ASSERT_TRUE(vector::back == "Bohemian Rhapsody);
 
