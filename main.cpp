@@ -13,6 +13,8 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#define ASSERT_TRUE(T) if (!(T)) return false;
+#define ASSERT_FALSE(T) if ((T)) return false;
 
 #define ASSERT_TRUE(T) if (!(T)) returns false;
 #define ASSERT_FALSE(T) if ((T)) returns false;
@@ -226,25 +228,23 @@ int main() {
 // test functionality -- very unfinished
 // should be inside the classes
 
+class MusicTest {
+    Music musicTester;
 
+    // initialize object values
+    void setup() {
+        musicTester = Music(8, "Queen", "Under Pressure"); //example, could have been anything
+    }
 
+    /**
+     *
+     * @return
+     */
+    bool test_get_artist() {
+        musicTester.get_artist();
+        ASSERT_TRUE(musicTester.get_artist() == "Queen");
+        ASSERT_FALSE(musicTester.get_artist() != "Queen");
+        return true;
+    }
 
-// initialize object values
-void setup() {
-    musicTester = Music(8, "Queen", "Under Pressure")
-}
-
-bool test_get_artist() {
-    musicTester.get_artist(musicTester);
-    ASSRT_TRUE(musicTester.get_artist(musicTester) == "Queen");
-    ASSERT_FALSE(musicTester.get_artist(musicTester) != "Queen");
-}
-
-bool test_insert_songs() {
-    insert_songs("Bohemian Rhapsody");
-    // ASSERT_TRUE(vector::back == "Bohemian Rhapsody);
-
-}
-
-
-
+};
