@@ -259,7 +259,7 @@ public:
      * @return {class} playlistToBeShuffled
      */
     Playlist shuffleSongs() {
-        Playlist playlistToBeShuffled(my_playlist);
+        Playlist playlistToBeShuffled;
         // get a time-based seed
         unsigned seed = std::chrono::system_clock::now()
                 .time_since_epoch()
@@ -286,10 +286,13 @@ public:
         testSong2 = Song(124, "rap", "fight this feeling");
         testSong3 = Song(145, "R&B", "Nights");
         testSong4 = Song(132, "Blues", "Blues No. 9");
-        Song playlistTest = [testSong1,testSong2,testSong3,testSong4]
-
-
+        Song playlistTest[4] = {testSong1,testSong2,testSong3,testSong4};
+        int size = 4;
+        playlistInstance1 = Playlist(playlistTest,size);
     };
+    bool testShuffleSongs(){
+
+    }
 };
 
 /**
