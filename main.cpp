@@ -116,6 +116,9 @@ class SongTest {
     Song songInstanceComp2;
     Song songInstanceComp3;
 public:
+    /**
+     * void setup called
+     */
     void setup() {
         songInstanceComp1 = Song(124, "rap", "fight this feeling");
         songInstanceComp3 = Song(124, "rap", "fight this feeling");
