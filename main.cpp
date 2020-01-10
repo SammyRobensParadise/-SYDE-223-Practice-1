@@ -163,11 +163,11 @@ public:
      * @return true
      */
     bool testSongComp() {
-        cout<<"running \n";
+        cout<<"running... \n";
         ASSERT_TRUE(songInstanceComp1 == songInstanceComp2)
-        cout<< "first pass \n";
+        cout<< "Passed: comparison of equal objects \n";
         ASSERT_FALSE(songInstanceComp2 == songInstanceComp3)
-        cout << "second pass \n";
+        cout << "Passed: comparison of unequal objects \n";
         return true;
     }
 
@@ -179,9 +179,12 @@ public:
      * @test Song
      */
     void runTest() {
+        cout<<"Testing Song Class... \n";
         setup();
+
         cout << (testSongComp() ? "PASS: all assertions passed sucessfully \n" : "FAIL: some assertions failed \n");
         tearDown();
+        cout<<"Done! \n"<<endl;
     }
 
 };
