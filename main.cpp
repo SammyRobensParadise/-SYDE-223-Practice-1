@@ -92,12 +92,23 @@ public:
         return true;
     }
 
-    bool testSongComp(){
+    bool testMusicComp(){
         ASSERT_TRUE(musicTester1 == musicTester2);
         ASSERT_FALSE(musicTester2 == musicTester3);
         return true;
     }
 
+    void tearDown(){
+    }
+
+    /*
+     * test runner for MusicTest class
+     */
+    void runTest(){
+        setup();
+        cout<<(testMusicComp()? "PASS: all assertions passed successfully \n": "FAIL: some assertions failed \n");
+        tearDown();
+    }
 };
 
 class Song : public Music {
