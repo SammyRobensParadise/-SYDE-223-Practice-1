@@ -70,12 +70,15 @@ public:
 };
 
 class MusicTest {
-    Music musicTester;
+    Music musicTester1;
+    Music musicTester2;
+    Music musicTester3;
 public:
     // initialize object values
     void setup() {
         musicTester1 = Music(8, "Queen", "Under Pressure");
         musicTester2 = Music( 7, "ABBA", "Waterloo");
+        musicTester3 = Music(6, "Nina Simone", "Feeling Good");
     }
 
     /**
@@ -83,7 +86,7 @@ public:
      * @return
      */
     bool test_get_artist() {
-        musicTester.get_artist();
+        musicTester1.get_artist();
         ASSERT_TRUE(musicTester1.get_artist() == "Queen");
         ASSERT_FALSE(musicTester1.get_artist() != "Queen");
         return true;
@@ -91,7 +94,7 @@ public:
 
     bool testSongComp(){
         ASSERT_TRUE(musicTester1 == musicTester2);
-        ASSERT_FALSE(musicTester1 == musicTester2);
+        ASSERT_FALSE(musicTester2 == musicTester3);
         return true;
     }
 
