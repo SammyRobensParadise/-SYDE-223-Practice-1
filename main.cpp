@@ -10,7 +10,6 @@
 #include <vector>
 #include <math.h>
 #include <random>
-#include <chrono>
 
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
@@ -221,10 +220,8 @@ public:
      *
      * @param init_my_playlist
      */
-    Playlist(Song init_my_playlist[], int &size) {
-        for (int i = 0; i < size - 1; i++) {
-            my_playlist.push_back(init_my_playlist[i]);
-        }
+    Playlist(vector<Song> initPlaylist) {
+        my_playlist = initPlaylist;
     }
 
 
@@ -288,9 +285,8 @@ public:
         testSong3 = Song(145, "R&B", "Nights");
         testSong4 = Song(132, "Blues", "Blues No. 9");
         testSong5 = Song(121, "Regge", "One Love");
-        Song playlistTest[4] = {testSong1, testSong2, testSong3, testSong4};
-        int size = 4;
-        playlistInstance1 = Playlist(playlistTest, size);
+        vector<Song> playlistTest = {testSong1, testSong2, testSong3, testSong4};
+        playlistInstance1 = Playlist(playlistTest);
     };
 
     bool testInsertSongs() {
