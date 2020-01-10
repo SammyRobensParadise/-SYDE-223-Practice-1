@@ -192,3 +192,30 @@ int main() {
     cout << lame;
     return 0;
 }
+
+// test functionality -- very unfinished
+// should be inside the classes
+
+#define ASSERT_TRUE(T) if (!(T)) returns false;
+#define ASSERT_TRUE(T) if (!(T)) returns false;
+
+
+// initialize object values
+void setup() {
+    musicTester = Music(8, "Queen", "Under Pressure")
+}
+
+bool test_get_artist(){
+    musicTester.get_artist(musicTester);
+    ASSRT_TRUE(musicTester.get_artist(musicTester) == "Queen");
+    ASSERT_FALSE(musicTester.get_artist(musicTester) !== "Queen");
+}
+
+bool test_insert_songs(){
+    insert_songs("Bohemian Rhapsody");
+    // ASSERT_TRUE(vector::back == "Bohemian Rhapsody);
+
+}
+
+
+
