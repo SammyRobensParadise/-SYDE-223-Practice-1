@@ -16,9 +16,6 @@
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
 
-#define ASSERT_TRUE(T) if (!(T)) returns false;
-#define ASSERT_FALSE(T) if ((T)) returns false;
-
 /** @namespace {std} */
 using namespace std;
 
