@@ -197,7 +197,6 @@ public:
      * @return {class} playlistToBeShuffled
      */
     Playlist shuffleSongs() {
-        // TODO implement shuffle songs
         Playlist playlistToBeShuffled(my_playlist);
         // get a time-based seed
         unsigned seed = std::chrono::system_clock::now()
@@ -212,7 +211,7 @@ public:
 };
 
 /**
- *
+ * overload
  * @param {vector<Song>} playlist1
  * @param {vector<Song>} playlist2
  * @return {vector<Song>} concatList
