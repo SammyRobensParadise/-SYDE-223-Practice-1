@@ -31,7 +31,9 @@ public:
      *
      * @param {int} dateMade
      */
-    Music(int dateMade = 0);
+    Music() {
+         dateMade = 0;
+    };
 
     /**
      *
@@ -39,7 +41,11 @@ public:
      * @param {string} artistName
      * @param {string} musicID
      */
-    Music(int dateMade, string artistName, string musicID);
+    Music(int init_dateMade, string init_artistName, string init_musicID) {
+        dateMade = init_dateMade;
+        artistName = init_artistName;
+        musicID = init_musicID;
+    };
 
     /**
      *
@@ -72,7 +78,9 @@ public:
      *
      * @param {int} songLength
      */
-    Song(int songLength = 0);
+    Song() {
+        songLength = 0;
+    };
 
     /**
      *
@@ -80,7 +88,11 @@ public:
      * @param {string} genre
      * @param {string} songName
      */
-    Song(int songLength, string genre, string songName);
+    Song(int init_songLength, string init_genre, string init_songName) {
+        songLength = init_songLength;
+        genre = init_genre;
+        songName = init_songName;
+    };
 
     /**
      *
@@ -102,7 +114,12 @@ public:
     /**
      * constructor
      */
-    Playlist(vector<Song> myPlaylist);
+    Playlist(){
+
+    };
+    Playlist(vector<Song> init_my_playlist){
+        my_playlist = init_my_playlist;
+    }
 
 
     /**
@@ -124,6 +141,7 @@ public:
         my_playlist.push_back(songToInsert);
         return true;
     };
+
     /**
      *
      * @return {vector} my_playlist
@@ -131,6 +149,7 @@ public:
     vector<Song> get_songs() {
         return my_playlist;
     }
+
     /**
      *
      * @return {class} playlistToBeShuffled
@@ -146,7 +165,8 @@ public:
                 std::default_random_engine(seed));
         return playlistToBeShuffled;
     }
-    friend vector<Song> operator+(vector<Song> &playlist1,vector<Song> &playlist2);
+
+    friend vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2);
 };
 
 /**
@@ -155,7 +175,7 @@ public:
  * @param {vector<Song>} playlist2
  * @return {vector<Song>} concatList
  */
-vector<Song> operator+(vector<Song> &playlist1,vector<Song> &playlist2){
+vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
     vector<Song> concatList = playlist1;
     concatList.insert(concatList.end(), playlist2.begin(), playlist2.end());
     return concatList;
@@ -167,6 +187,8 @@ vector<Song> operator+(vector<Song> &playlist1,vector<Song> &playlist2){
  * @return {int} 0
  */
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Music example(120, "rock", "name");
+    const string lame = example.get_artist();
+    cout << lame;
     return 0;
 }
