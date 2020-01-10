@@ -265,7 +265,24 @@ public:
 
     friend vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2);
 };
+ class PlaylistTest {
+     Song testSong1;
+     Song testSong2;
+     Song testSong3;
+     Song testSong4;
+     Playlist playlistInstance1;
+     Playlist playlistInstance2;
 
+ public:
+     void setup(){
+         testSong1 = Song(124, "rap", "fight this feeling");
+         testSong2 = Song(124, "rap", "fight this feeling");
+         testSong3 = Song(145,"R&B","Nights");
+         testSong4 = Song(132, "Blues","Blues No. 9");
+
+
+     }
+ };
 /**
  * overload
  * @param {vector<Song>} playlist1
