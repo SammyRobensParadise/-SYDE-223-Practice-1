@@ -72,11 +72,13 @@ public:
 class MusicTest {
     Music musicTester1;
     Music musicTester2;
+    Music musicTester3;
 public:
     // initialize object values
     void setup() {
         musicTester1 = Music(8, "Queen", "Under Pressure");
         musicTester2 = Music( 7, "ABBA", "Waterloo");
+        musicTester3 = Music(6, "Nina Simone", "Feeling Good");
     }
 
     /**
@@ -92,7 +94,7 @@ public:
 
     bool testSongComp(){
         ASSERT_TRUE(musicTester1 == musicTester2);
-        ASSERT_FALSE(musicTester1 == musicTester2);
+        ASSERT_FALSE(musicTester2 == musicTester3);
         return true;
     }
 
