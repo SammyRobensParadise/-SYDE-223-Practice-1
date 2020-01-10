@@ -93,22 +93,22 @@ public:
         return true;
     }
 
-    bool testMusicComp(){
+    bool testMusicComp() {
         ASSERT_TRUE(musicTester1 == musicTester2);
         ASSERT_FALSE(musicTester2 == musicTester3);
         return true;
     }
 
-    void tearDown(){
+    void tearDown() {
     }
 
     /*
      * test runner for MusicTest class
      */
-    void runTest(){
-        cout<<"Testing Music class...\n";
+    void runTest() {
+        cout << "Testing Music class...\n";
         setup();
-        cout<<(testMusicComp()? "PASS: all assertions passed successfully \n": "FAIL: some assertions failed \n");
+        cout << (testMusicComp() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
         tearDown();
     }
 };
@@ -175,9 +175,9 @@ public:
      * @return true
      */
     bool testSongComp() {
-        cout<<"running... \n";
+        cout << "running... \n";
         ASSERT_TRUE(songInstanceComp1 == songInstanceComp2)
-        cout<< "Passed: comparison of equal objects \n";
+        cout << "Passed: comparison of equal objects \n";
         ASSERT_FALSE(songInstanceComp2 == songInstanceComp3)
         cout << "Passed: comparison of unequal objects \n";
         return true;
@@ -191,12 +191,12 @@ public:
      * @test Song
      */
     void runTest() {
-        cout<<"Testing Song Class... \n";
+        cout << "Testing Song Class... \n";
         setup();
 
         cout << (testSongComp() ? "PASS: all assertions passed sucessfully \n" : "FAIL: some assertions failed \n");
         tearDown();
-        cout<<"Done! \n"<<endl;
+        cout << "Done! \n" << endl;
     }
 
 };
@@ -216,8 +216,10 @@ public:
      *
      * @param init_my_playlist
      */
-    Playlist(vector<Song> init_my_playlist) {
-        my_playlist = init_my_playlist;
+    Playlist(Song init_my_playlist[],int &size) {
+        for (int i = 0; i < size-1; i++) {
+            my_playlist.push_back(init_my_playlist[i]);
+        }
     }
 
 
@@ -266,24 +268,27 @@ public:
 
     friend vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2);
 };
- class PlaylistTest {
-     Song testSong1;
-     Song testSong2;
-     Song testSong3;
-     Song testSong4;
-     Playlist playlistInstance1;
-     Playlist playlistInstance2;
 
- public:
-     void setup(){
-         testSong1 = Song(124, "rap", "fight this feeling");
-         testSong2 = Song(124, "rap", "fight this feeling");
-         testSong3 = Song(145,"R&B","Nights");
-         testSong4 = Song(132, "Blues","Blues No. 9");
+class PlaylistTest {
+    Song testSong1;
+    Song testSong2;
+    Song testSong3;
+    Song testSong4;
+    Playlist playlistInstance1;
+    Playlist playlistInstance2;
+
+public:
+    void setup() {
+        testSong1 = Song(124, "rap", "fight this feeling");
+        testSong2 = Song(124, "rap", "fight this feeling");
+        testSong3 = Song(145, "R&B", "Nights");
+        testSong4 = Song(132, "Blues", "Blues No. 9");
+        Song playlistTest = [testSong1,testSong2,testSong3,testSong4]
 
 
-     }
- };
+    };
+};
+
 /**
  * overload
  * @param {vector<Song>} playlist1
