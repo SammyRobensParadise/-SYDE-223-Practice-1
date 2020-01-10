@@ -22,10 +22,14 @@ public:
         return artistName;
     }
 
-    friend bool operator==(const Music &comp1, const Music &comp2);
+    bool operator==(const Music &comp2) {
+        return dateMade == comp2.dateMade &&
+               artistName == comp2.artistName
+               && musicID == comp2.musicID;
+    }
 };
 
-class Song {
+class Song : public Music {
 private:
     unsigned int songLength;
     string genre;
@@ -36,21 +40,33 @@ public:
 
     Song(int songLength, string genre, string songName);
 
+    bool operator==(const Song &comp2) {
+        return songLength == comp2.songLength &&
+               genre == comp2.genre &&
+               songName == comp2.songName;
+    }
 // static_cast<Music>(song_info);
 };
 
+
 class Playlist {
+private:
+    vector<Song> my_playlist;
+public:
+    bool Playlist_shuffle_songs(const Song &songToInsert) {
+        for (vector<Song>::iterator it = my_playlist.begin(); it != my_playlist.end(); ++it) {
+            if (*it == songToInsert) {
+                return false;
+            };
 
-    Playlist shuffle_songs() {
-
+        };
+        return true;
     };
+
+    bool insert_song() {}
+
 };
 
-bool operator==(const Music &comp1, const Music &comp2) {
-    return comp1.dateMade == comp2.dateMade &&
-           comp1.artistName == comp2.artistName
-           && comp1.musicID == comp2.musicID;
-}
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
