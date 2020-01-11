@@ -145,6 +145,10 @@ public:
         songName = init_songName;
     };
 
+    string get_name() {
+        return songName;
+    }
+
     /**
      *
      * @param {Song} comp2
@@ -258,13 +262,13 @@ public:
      *
      * @return {class} playlistToBeShuffled
      */
-    Playlist shuffleSongs() {
-        for(int i = 1; i < my_playlist.size(); i++){
+    void shuffleSongs() {
+        srand(time(0));
+        for(int i = 0; i < my_playlist.size(); i++){
             int index1 = rand() % my_playlist.size();
             int index2 = rand() % my_playlist.size();
             swap(my_playlist[index1], my_playlist[index2]);
         }
-        return my_playlist;
     }
     friend vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2);
 };
@@ -290,7 +294,7 @@ public:
     };
 
     bool testInsertSongs() {
-        cout << 'testing insertSongs() \n';
+        cout << "testing insertSongs() \n";
         cout << "Inserting normal Song... \n";
         playlistInstance1.insertSongs(testSong5);
         int playlistSize = playlistInstance1.get_songs().size();
@@ -308,7 +312,14 @@ public:
         vector<Song> initInstance = playlistInstance1.get_songs();
         cout << "shuffling songs... \n";
         playlistInstance1.shuffleSongs();
-        ASSERT_TRUE(initInstance != playlistInstance1.get_songs())
+        bool passedTest = false;
+        for (int s = 0; s < initInstance.size(); s++) {
+            if (!(initInstance[s] == playlistInstance1.get_songs()[s])) {
+                passedTest = true;
+                break;
+            }
+        }
+        ASSERT_TRUE(passedTest);
         cout << "PASS: shuffling \n";
         return true;
     }
