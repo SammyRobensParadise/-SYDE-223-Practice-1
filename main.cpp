@@ -113,7 +113,7 @@ public:
         setup();
         cout << "testing MusicComp()\n";
         cout << (testMusicComp() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
-        cout << "testing getArtist  \n";
+        cout << "testing getArtist()  \n";
         cout << (testGetArtist() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
         tearDown();
         cout << "Done!\n";
@@ -137,10 +137,15 @@ public:
     };
 
     /**
-     *
+     * /param constructor for playlist class
+     * explicitly calls param constructor for base
+     * music class
      * @param {int} songLength
      * @param {string} genre
      * @param {string} songName
+     * @param {int} dateMade `Music`
+     * @param {string} artistName `Music`
+     * @param {string} musicID `music`
      */
     Song(int init_songLength, string init_genre, string init_songName, int init_dateMade, string init_artistName,
          string init_musicID) : Music(init_dateMade, init_artistName, init_musicID) {
@@ -149,6 +154,10 @@ public:
         songName = init_songName;
     };
 
+    /**
+     *
+     * @return {string} songName
+     */
     string get_name() {
         return songName;
     }
@@ -176,9 +185,9 @@ public:
      * void setup called
      */
     void setup() {
-        songInstanceComp1 = Song(124, "rap", "fight this feeling",2015,"M. Miller","124");
-        songInstanceComp2 = Song(124, "rap", "fight this feeling",2015,"M. Miller","124");
-        songInstanceComp3 = Song(124, "rock and roll", "brown sugar",1967,"Rolling Stones","142");
+        songInstanceComp1 = Song(124, "rap", "fight this feeling", 2015, "M. Miller", "124");
+        songInstanceComp2 = Song(124, "rap", "fight this feeling", 2015, "M. Miller", "124");
+        songInstanceComp3 = Song(124, "rock and roll", "brown sugar", 1967, "Rolling Stones", "142");
 
     }
 
@@ -290,10 +299,10 @@ class PlaylistTest {
 
 public:
     void setup() {
-        testSong1 = Song(124, "rap", "fight this feeling",2015,"M. Miller","124");
-        testSong2 = Song(124, "rap", "fight this feeling",2015,"M. Miller","124");
-        testSong3 = Song(145, "R&B", "Nights",2016,"Frank Ocean", "354");
-        testSong4 = Song(132, "Blues", "Blues No. 9",1933,"Buddy Guy","775");
+        testSong1 = Song(124, "rap", "fight this feeling", 2015, "M. Miller", "124");
+        testSong2 = Song(124, "rap", "fight this feeling", 2015, "M. Miller", "124");
+        testSong3 = Song(145, "R&B", "Nights", 2016, "Frank Ocean", "354");
+        testSong4 = Song(132, "Blues", "Blues No. 9", 1933, "Buddy Guy", "775");
         testSong5 = Song(121, "Regge", "One Love", 1972, "Bob Marley", "674");
         vector<Song> playlistTest = {testSong1, testSong2, testSong3, testSong4};
         playlistInstance1 = Playlist(playlistTest);
