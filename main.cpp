@@ -243,7 +243,7 @@ public:
             if (artistName == static_cast<Music>(*it).get_artist()) {
                 unique_artist_count++;
             }
-            if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS) {
+            if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS-1) {
                 cout << "ERR: unable to add songs because the song already exists or you have exceeded "
                      << MAX_NUMBER_OF_UNIQUE_ARTISTS << " artists in your playlist \n";
                 return false;
@@ -340,8 +340,8 @@ public:
         return true;
     }
 
-    void tearDown() {
-
+    void static tearDown() {
+        cout<< "Cleaning up... \n";
     }
 
     void runTest() {
