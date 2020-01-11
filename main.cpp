@@ -301,7 +301,7 @@ public:
         testSong8 = Song(146, "rap", "Forget it", 2015, "M. Miller", "148");
 
         vector<Song> playlistTest = {testSong1, testSong2, testSong3, testSong4};
-        vector<Song> playlistTest2 = {testSong1, testSong6, testSong7};
+        vector<Song> playlistTest2 = {testSong1, testSong6, testSong7,testSong3};
         playlistInstance1 = Playlist(playlistTest);
         playlistInstance2 = Playlist(playlistTest2);
     };
