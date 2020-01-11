@@ -198,7 +198,7 @@ public:
         cout << "Testing Song Class... \n";
         setup();
 
-        cout << (testSongComp() ? "PASS: all assertions passed sucessfully \n" : "FAIL: some assertions failed \n");
+        cout << (testSongComp() ? "PASS: all assertions passed successfully \n" : "FAIL: some assertions failed \n");
         tearDown();
         cout << "Done! \n" << endl;
     }
