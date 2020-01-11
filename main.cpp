@@ -33,9 +33,6 @@ public:
      */
     Music() {
         dateMade = 0;
-        // TODO
-        // remove after testing
-        artistName = "test name";
     };
 
     /**
@@ -88,21 +85,22 @@ public:
      */
     bool testGetArtist() {
         musicTester1.get_artist();
-        ASSERT_TRUE(musicTester1.get_artist() == "Queen");
-        ASSERT_FALSE(musicTester1.get_artist() != "Queen");
+        ASSERT_TRUE(musicTester1.get_artist() == "Queen")
+        ASSERT_FALSE(musicTester1.get_artist() != "Queen")
         return true;
     }
 
     bool testMusicComp() {
         cout << "running... \n";
-        ASSERT_TRUE(musicTester1 == musicTester2);
+        ASSERT_TRUE(musicTester1 == musicTester2)
         cout << "Passed: Comparison of equal objects\n";
-        ASSERT_FALSE(musicTester2 == musicTester3);
+        ASSERT_FALSE(musicTester2 == musicTester3)
         cout << "Passed: Comparison of unequal objects\n";
         return true;
     }
 
-    void tearDown() {
+    void static tearDown() {
+        cout << "Cleaning up... \n";
     }
 
     /*
@@ -156,14 +154,6 @@ public:
 
     /**
      *
-     * @return {string} songName
-     */
-    string get_name() {
-        return songName;
-    }
-
-    /**
-     *
      * @param {Song} comp2
      * @return
      */
@@ -204,7 +194,8 @@ public:
         return true;
     }
 
-    void tearDown() {
+    void static tearDown() {
+        cout << "Cleaning up... \n";
     }
 
     /**
@@ -227,17 +218,15 @@ private:
     vector<Song> my_playlist;
 public:
     /**
-     * constructor
+     * default constructor
      */
-    Playlist() {
-
-    };
+    Playlist() {};
 
     /**
-     *
+     * explicit constructor
      * @param init_my_playlist
      */
-    Playlist(vector<Song> initPlaylist) {
+    explicit Playlist(vector<Song> initPlaylist) {
         my_playlist = initPlaylist;
     }
 
@@ -249,14 +238,14 @@ public:
      */
     bool insertSongs(Song &songToInsert) {
         string artistName = static_cast<Music>(songToInsert).get_artist();
-        cout << "Artist Name: " << artistName << "\n";
         int unique_artist_count = 0;
         for (vector<Song>::iterator it = my_playlist.begin(); it != my_playlist.end(); ++it) {
             if (artistName == static_cast<Music>(*it).get_artist()) {
                 unique_artist_count++;
             }
             if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS) {
-                cout << "ERR: unable to add songs \n";
+                cout << "ERR: unable to add songs because the song already exists or you have exceeded "
+                     << MAX_NUMBER_OF_UNIQUE_ARTISTS << " artists in your playlist \n";
                 return false;
             }
         }
@@ -294,6 +283,9 @@ class PlaylistTest {
     Song testSong3;
     Song testSong4;
     Song testSong5;
+    Song testSong6;
+    Song testSong7;
+    Song testSong8;
     Playlist playlistInstance1;
     Playlist playlistInstance2;
 
@@ -304,20 +296,28 @@ public:
         testSong3 = Song(145, "R&B", "Nights", 2016, "Frank Ocean", "354");
         testSong4 = Song(132, "Blues", "Blues No. 9", 1933, "Buddy Guy", "775");
         testSong5 = Song(121, "Regge", "One Love", 1972, "Bob Marley", "674");
+        testSong6 = Song(156, "rap", "Buttons", 2015, "M. Miller", "145");
+        testSong7 = Song(146, "rap", "Out", 2015, "M. Miller", "146");
+        testSong8 = Song(146, "rap", "Forget it", 2015, "M. Miller", "148");
+
         vector<Song> playlistTest = {testSong1, testSong2, testSong3, testSong4};
+        vector<Song> playlistTest2 = {testSong1, testSong6, testSong7};
         playlistInstance1 = Playlist(playlistTest);
+        playlistInstance2 = Playlist(playlistTest2);
     };
 
     bool testInsertSongs() {
         cout << "testing insertSongs() \n";
         cout << "Inserting normal Song... \n";
         playlistInstance1.insertSongs(testSong5);
-        cout << "Getting updated size... \n";
-        int playlistSize = playlistInstance1.get_songs().size()-1;
+        int playlistSize = playlistInstance1.get_songs().size() - 1;
         ASSERT_TRUE(playlistInstance1.get_songs().at(playlistSize) == testSong5)
         cout << "PASS: additional song added \n";
         cout << "Inserting duplicate songs... \n";
         ASSERT_TRUE(playlistInstance1.insertSongs(testSong1) == false)
+        cout << "PASS: songs were not added \n";
+        cout << "Inserting 4th song of same artist... \n";
+        ASSERT_TRUE(playlistInstance2.insertSongs(testSong8) == false)
         cout << "PASS: songs were not added \n";
         return true;
     }
