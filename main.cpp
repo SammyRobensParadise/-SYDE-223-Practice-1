@@ -249,7 +249,7 @@ public:
      */
     bool insertSongs(Song &songToInsert) {
         string artistName = static_cast<Music>(songToInsert).get_artist();
-        cout << artistName << " artist Name" << endl;
+        cout << "Artist Name: " << artistName << "\n";
         int unique_artist_count = 0;
         for (vector<Song>::iterator it = my_playlist.begin(); it != my_playlist.end(); ++it) {
             if (artistName == static_cast<Music>(*it).get_artist()) {
@@ -312,7 +312,8 @@ public:
         cout << "testing insertSongs() \n";
         cout << "Inserting normal Song... \n";
         playlistInstance1.insertSongs(testSong5);
-        int playlistSize = playlistInstance1.get_songs().size();
+        cout << "Getting updated size... \n";
+        int playlistSize = playlistInstance1.get_songs().size()-1;
         ASSERT_TRUE(playlistInstance1.get_songs().at(playlistSize) == testSong5)
         cout << "PASS: additional song added \n";
         cout << "Inserting duplicate songs... \n";
