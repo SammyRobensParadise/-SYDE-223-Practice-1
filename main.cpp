@@ -5,11 +5,10 @@
  */
 
 #include <iostream>
-#include <cmath>
 #include <string>
+#include <utility>
 #include <vector>
-#include <math.h>
-#include <random>
+#include <cmath>
 
 #define ASSERT_TRUE(T) if (!(T)) return false;
 #define ASSERT_FALSE(T) if ((T)) return false;
@@ -43,8 +42,9 @@ public:
      */
     Music(int init_dateMade, string init_artistName, string init_musicID) {
         dateMade = init_dateMade;
-        artistName = init_artistName;
-        musicID = init_musicID;
+        // std:move used to allow the efficient transfer of resources from t to another object
+        artistName = std::move(init_artistName);
+        musicID = std::move(init_musicID);
     };
 
     /**
@@ -164,8 +164,6 @@ public:
     }
 };
 
-// Song test class
-
 class SongTest : public Music {
     Song songInstanceComp1;
     Song songInstanceComp2;
@@ -218,9 +216,10 @@ private:
     vector<Song> my_playlist;
 public:
     /**
-     * default constructor
+     * usage in C++11 to explicitly
+     * define default constructor
      */
-    Playlist() {};
+    Playlist() = default;
 
     /**
      * explicit constructor
@@ -266,7 +265,7 @@ public:
      * @return {class} playlistToBeShuffled
      */
     void shuffleSongs() {
-        srand(time(0));
+        srand(time(nullptr));
         for (int i = 0; i < my_playlist.size(); i++) {
             int index1 = rand() % my_playlist.size();
             int index2 = rand() % my_playlist.size();
