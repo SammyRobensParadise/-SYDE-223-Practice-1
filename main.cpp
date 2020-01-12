@@ -339,6 +339,16 @@ public:
         return true;
     }
 
+    bool testConcatPlaylist(){
+        cout<< "Testing overloaded + operator for Playlist \n";
+        cout<< "Creating playlist 1... \n";
+        vector<Song> firstPlaylistInstance = playlistInstance1.get_songs();
+        cout<< "Creating playlist 2... \n";
+        vector<Song> secondPlaylistInstance = playlistInstance2.get_songs();
+        // TODO
+        // implement and call the overloaded + operator with an assertion and add it to the test runner
+    }
+
     void static tearDown() {
         cout << "Cleaning up... \n";
     }
