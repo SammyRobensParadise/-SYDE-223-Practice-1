@@ -1,12 +1,13 @@
-/**
+/*******************************
  * @author Sammy Robens-Paradise
  * @author Mary McPhee
- * @date Friday Jan. 10, 2020
- */
+ * @date Sunday Jan 12, 2020
+ * @IDE: CLion, macOS
+ * @SYDE_223: Practice Exercise 1
+ ******************************/
 
 #include <iostream>
 #include <string>
-#include <utility>
 #include <vector>
 #include <cmath>
 
@@ -352,17 +353,18 @@ public:
         return true;
     }
 
-    bool testConcatPlaylist(){
-        cout<< "Testing overloaded + operator for Playlist \n";
-        cout<< "Creating playlist 1... \n";
+    bool testConcatPlaylist() {
+        cout << "Testing overloaded + operator for Playlist \n";
+        cout << "Creating playlist 1... \n";
         vector<Song> firstPlaylistInstance = playlistInstance1.get_songs();
-        cout<< "Creating playlist 2... \n";
+        cout << "Creating playlist 2... \n";
         vector<Song> secondPlaylistInstance = playlistInstance2.get_songs();
 
         vector<Song> testConcatList = firstPlaylistInstance + secondPlaylistInstance;
-        cout<< "checking if first song and last song are the same\n";
-        ASSERT_TRUE(testConcatList[0] == firstPlaylistInstance[0] && testConcatList.back() == secondPlaylistInstance.back());
-        cout<< "Pass: overload+ operator works\n";
+        cout << "checking if first song and last song are the same\n";
+        ASSERT_TRUE(testConcatList[0] == firstPlaylistInstance[0] &&
+                    testConcatList.back() == secondPlaylistInstance.back());
+        cout << "Pass: overload+ operator works\n";
         return true;
     }
 
