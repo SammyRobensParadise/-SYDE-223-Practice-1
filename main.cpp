@@ -274,7 +274,20 @@ public:
     }
 
     friend vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2);
+
 };
+
+/**
+ * overload
+ * @param {vector<Song>} playlist1
+ * @param {vector<Song>} playlist2
+ * @return {vector<Song>} concatList
+ */
+vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
+    vector<Song> concatList = playlist1;
+    concatList.insert(concatList.end(), playlist2.begin(), playlist2.end());
+    return concatList;
+}
 
 class PlaylistTest {
     Song testSong1;
@@ -345,8 +358,12 @@ public:
         vector<Song> firstPlaylistInstance = playlistInstance1.get_songs();
         cout<< "Creating playlist 2... \n";
         vector<Song> secondPlaylistInstance = playlistInstance2.get_songs();
-        // TODO
-        // implement and call the overloaded + operator with an assertion and add it to the test runner
+
+        vector<Song> testConcatList = firstPlaylistInstance + secondPlaylistInstance;
+        cout<< "checking if first song and last song are the same\n";
+        ASSERT_TRUE(testConcatList[0] == firstPlaylistInstance[0] && testConcatList.back() == secondPlaylistInstance.back());
+        cout<< "Pass: overload+ operator works\n";
+        return true;
     }
 
     void static tearDown() {
@@ -360,22 +377,12 @@ public:
                                     : "FAIL: some assertions failed \n");
         cout << (testInsertSongs() ? "PASS: all assertions passed successfully \n"
                                    : "FAIL: some assertions failed \n");
+        cout << (testConcatPlaylist() ? "PASS: all assertions passed successfully \n"
+                                      : "FAIL: some assertions failed \n");
         tearDown();
         cout << "Done! \n" << endl;
     }
 };
-
-/**
- * overload
- * @param {vector<Song>} playlist1
- * @param {vector<Song>} playlist2
- * @return {vector<Song>} concatList
- */
-vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
-    vector<Song> concatList = playlist1;
-    concatList.insert(concatList.end(), playlist2.begin(), playlist2.end());
-    return concatList;
-}
 
 
 /**
