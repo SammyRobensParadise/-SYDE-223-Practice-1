@@ -75,9 +75,9 @@ class MusicTest {
 public:
     // initialize object values
     void setup() {
-        musicTester1 = Music(8, "Queen", "Under Pressure");
-        musicTester2 = Music(8, "Queen", "Under Pressure");
-        musicTester3 = Music(6, "Nina Simone", "Feeling Good");
+        musicTester1 = Music(1981, "Queen", "Under Pressure");
+        musicTester2 = Music(1981, "Queen", "Under Pressure");
+        musicTester3 = Music(1965, "Nina Simone", "Feeling Good");
     }
 
     /**
@@ -331,12 +331,14 @@ public:
         cout << "creating vector... \n";
         vector<Song> initInstance = playlistInstance1.get_songs();
         cout << "shuffling songs... \n";
-        playlistInstance1.shuffleSongs();
         bool passedTest = false;
-        for (int s = 0; s < initInstance.size(); s++) {
-            if (!(initInstance[s] == playlistInstance1.get_songs()[s])) {
-                passedTest = true;
-                break;
+        while(!passedTest) {
+            playlistInstance1.shuffleSongs();
+            for (int s = 0; s < initInstance.size(); s++) {
+                if (!(initInstance[s] == playlistInstance1.get_songs()[s])) {
+                    passedTest = true;
+                    break;
+                }
             }
         }
         ASSERT_TRUE(passedTest);
