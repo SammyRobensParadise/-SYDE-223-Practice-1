@@ -243,7 +243,7 @@ public:
             if (artistName == static_cast<Music>(*it).get_artist()) {
                 unique_artist_count++;
             }
-            if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS-1) {
+            if (*it == songToInsert || unique_artist_count > MAX_NUMBER_OF_UNIQUE_ARTISTS - 1) {
                 cout << "ERR: unable to add songs because the song already exists or you have exceeded "
                      << MAX_NUMBER_OF_UNIQUE_ARTISTS << " artists in your playlist \n";
                 return false;
@@ -301,7 +301,7 @@ public:
         testSong8 = Song(146, "rap", "Forget it", 2015, "M. Miller", "148");
 
         vector<Song> playlistTest = {testSong1, testSong2, testSong3, testSong4};
-        vector<Song> playlistTest2 = {testSong1, testSong6, testSong7,testSong3};
+        vector<Song> playlistTest2 = {testSong1, testSong6, testSong7, testSong3};
         playlistInstance1 = Playlist(playlistTest);
         playlistInstance2 = Playlist(playlistTest2);
     };
@@ -341,7 +341,7 @@ public:
     }
 
     void static tearDown() {
-        cout<< "Cleaning up... \n";
+        cout << "Cleaning up... \n";
     }
 
     void runTest() {
