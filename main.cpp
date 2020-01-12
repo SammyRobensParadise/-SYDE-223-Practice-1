@@ -266,7 +266,6 @@ public:
      * @return {class} playlistToBeShuffled
      */
     void shuffleSongs() {
-        srand(time(nullptr));
         for (int i = 0; i < my_playlist.size(); i++) {
             int index1 = rand() % my_playlist.size();
             int index2 = rand() % my_playlist.size();
@@ -384,6 +383,7 @@ public:
  * @return {int} 0
  */
 int main() {
+    srand(time(nullptr));
     cout << endl;
     cout << "- - - - - - - -" << endl;
     SongTest songTestRunner;
