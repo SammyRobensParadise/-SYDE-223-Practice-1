@@ -291,16 +291,8 @@ vector<Song> operator+(vector<Song> &playlist1, vector<Song> &playlist2) {
 }
 
 class PlaylistTest {
-    Song testSong1;
-    Song testSong2;
-    Song testSong3;
-    Song testSong4;
-    Song testSong5;
-    Song testSong6;
-    Song testSong7;
-    Song testSong8;
-    Playlist playlistInstance1;
-    Playlist playlistInstance2;
+    Song testSong1, testSong2, testSong3, testSong4, testSong5, testSong6, testSong7, testSong8;
+    Playlist playlistInstance1, playlistInstance2;
 
 public:
     void setup() {
