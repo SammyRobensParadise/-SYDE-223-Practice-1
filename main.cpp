@@ -314,10 +314,10 @@ public:
         ASSERT_TRUE(playlistInstance1.get_songs().at(playlistSize) == testSong5)
         cout << "PASS: additional song added \n";
         cout << "Inserting duplicate songs... \n";
-        ASSERT_TRUE(playlistInstance1.insertSongs(testSong1) == false)
+        ASSERT_TRUE(!playlistInstance1.insertSongs(testSong1))
         cout << "PASS: songs were not added \n";
         cout << "Inserting 4th song of same artist... \n";
-        ASSERT_TRUE(playlistInstance2.insertSongs(testSong8) == false)
+        ASSERT_TRUE(!playlistInstance2.insertSongs(testSong8))
         cout << "PASS: songs were not added \n";
         return true;
     }
